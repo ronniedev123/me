@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary Cynthia ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Georgia', serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.75)
+    ),
+    url("ChatGPT Image May 4, 2026, 08_51_51 AM.png");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    overflow-x:hidden;
+}
+
+/* Floating hearts */
+.hearts{
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+.hearts span{
+    position:absolute;
+    color:#ff7aa2;
+    font-size:25px;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+.Love_you{
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 25px;
+    padding: 50px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+h1{
+    text-align:center;
+    color:#ffd6e7;
+    margin-top:8px;
+    margin-bottom:16px;
+    font-size:3rem;
+}
+
+.date{
+    text-align:center;
+    margin-bottom:30px;
+    color:#ffe4ee;
+    font-style:italic;
+}
+
+.message{
+    line-height:1.6;
+    font-size:1.05rem;
+    text-align:center;
+}
+
+.message p{
+    margin-bottom:20px;
+}
+
+.signature{
+    text-align:center;
+    margin-top:40px;
+    font-size:1.4rem;
+    color:#ffd6e7;
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#ffd6e7;
+    font-size:1.1rem;
+}
+
+@media(max-width:768px){
+    .Love_you{
+        padding:30px;
+    }
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    .message{
+        font-size:0.98rem;
+    }
+}
+
+/* Envelope Screen */
+
+#envelopeContainer{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,192,203,0.15),
+        rgba(0,0,0,0.85)
+    );
+    backdrop-filter:blur(12px);
+    z-index:9999;
+}
+
+.envelope{
+    position:relative;
+    width:420px;
+    height:280px;
+    cursor:pointer;
+    perspective:1200px;
+}
+
+.envelope-body{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(
+        135deg,
+        #fff5f8,
+        #f8d7e6
+    );
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.4);
+}
+
+.envelope-body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+}
+
+.envelope-body h2{
+    margin-top:110px;
+    text-align:center;
+    color:#8d2458;
+    font-size:2.2rem;
+    letter-spacing:2px;
+}
+
+.envelope-body p{
+    text-align:center;
+    color:#b14d7d;
+    margin-top:15px;
+}
+
+.envelope-flap{
+    position:absolute;
+    width:100%;
+    height:160px;
+    top:0;
+    left:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ffd1e6,
+        #f5aacd
+    );
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin:top;
+    transition:1.2s ease;
+    z-index:5;
+}
+
+.envelope.open .envelope-flap{
+    transform:rotateX(180deg);
+}
+
+.seal{
+    position:absolute;
+    left:50%;
+    top:115px;
+    transform:translateX(-50%);
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:
+    radial-gradient(
+        circle,
+        #d11d5c,
+        #8a0839
+    );
+
+    color:white;
+    font-size:30px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:10;
+
+    box-shadow:
+    0 0 20px rgba(255,0,102,0.5);
+}
+
+.envelope.open .seal{
+    opacity:0;
+    transition:0.5s;
+}
+
+.instruction{
+    position:absolute;
+    bottom:100px;
+    color:white;
+    font-size:1.1rem;
+    letter-spacing:2px;
+    text-shadow:0 0 20px pink;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:0.5;
+    }
+}
+
+/* Letter entrance animation and back button styling */
+.Love_you{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .45s ease, transform .45s ease;
+}
+.Love_you.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.envelope{
+    transition:transform .8s cubic-bezier(.2,.9,.3,1), box-shadow .4s;
+}
+.envelope.open{
+    transform:translateY(-8px) rotateX(8deg) scale(1.02);
+    box-shadow:0 30px 80px rgba(0,0,0,0.45);
+}
+
+.back-btn{
+    margin-top:22px;
+    padding:10px 18px;
+    background:linear-gradient(90deg,#ffd6e7,#ff9fc4);
+    border:none;
+    border-radius:999px;
+    color:#6b042f;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 24px rgba(203,37,120,0.18);
+    transition:transform .18s ease, box-shadow .18s ease, opacity .18s;
+}
+.back-btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(203,37,120,0.22)}
+.back-btn:active{transform:translateY(0) scale(.995)}
+
+/* manual control removed: audio now starts/stops with envelope */
+
+/* Image frame above title */
+.image-frame{
+    display:block;
+    width:100%;
+    max-width:100%;
+    margin:0 0 18px 0;
+    padding:0;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(8px) saturate(110%);
+    box-sizing:border-box;
+}
+.image-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:cover;
+}
+
+/* Overlay spectrum removed */
+
+</style>
+</head>
+
+<body>
+
+<div id="envelopeContainer">
+    <div class="envelope" onclick="openLetter()">
+        <div class="envelope-flap"></div>
+        <div class="seal">❤</div>
+        <div class="envelope-body">
+            <h2>For Cynthia ❤️</h2>
+            <p>Click to Open</p>
+        </div>
+    </div>
+    <div class="instruction">
+    ✨ A special anniversary letter awaits you ✨
+    </div>
+</div>
+
+
+<div class="hearts">
+    <span style="left:10%;animation-delay:0s;">❤</span>
+    <span style="left:25%;animation-delay:2s;">❤</span>
+    <span style="left:40%;animation-delay:4s;">❤</span>
+    <span style="left:55%;animation-delay:1s;">❤</span>
+    <span style="left:70%;animation-delay:3s;">❤</span>
+    <span style="left:85%;animation-delay:5s;">❤</span>
+</div>
+
+<div class="Love_you" id="letter" style="display:none">
+
+    <!-- Image frame above the title -->
+    <div class="image-frame">
+        <img src="ChatGPT Image May 4, 2026, 08_51_51 AM.png" alt="Memory" />
+    </div>
+
+    <h1>Happy Anniversary My Love ❤️</h1>
+
+    <div class="date">
+        Dedicated to Cynthia 💜
+    </div>
+
+    <div class="message">
+
+        <p>
+            My Dearest Cynthia,
+        </p>
+
+        <p>
+            Today is not just another day on the calendar. It is a beautiful
+            reminder of the journey we have shared, the memories we have created,
+            and the love that continues to grow between us every single day.
+        </p>
+
+        <p>
+            Looking at us, I am reminded of how blessed I am to have you in my
+            life. Your smile brightens my darkest moments, your voice brings
+            peace to my heart, and your presence makes every day feel special.
+            You have become one of the greatest gifts God has ever given me.
+        </p>
+
+        <p>
+            Thank you for standing beside me through the good times and the
+            challenging moments. Thank you for believing in me, encouraging me,
+            and loving me in ways words can never fully express.
+        </p>
+
+        <p>
+            Every moment spent with you becomes a treasured memory. Every laugh,
+            every conversation, every embrace reminds me why my heart chose you.
+            You are my comfort, my happiness, my inspiration, and my best friend.
+        </p>
+
+        <p>
+            As we celebrate this anniversary, I pray that our love continues
+            to grow stronger, deeper, and more beautiful with each passing year.
+            May God bless our relationship, guide our future, and keep us united
+            through every season of life.
+        </p>
+
+        <p>
+            Cynthia, if I had the chance to choose again, I would still choose
+            you a thousand times over. You are my favorite chapter, my sweetest
+            blessing, and the most beautiful part of my story.
+        </p>
+
+        <p>
+            Happy Anniversary, my love. Thank you for being you.
+            I love you today, tomorrow, and forever. ❤️
+        </p>
+
+    </div>
+
+    <div class="signature">
+        Forever Yours,<br>
+        Ronald ❤️
+    </div>
+
+    <!-- spectrum removed -->
+
+    <div class="footer">
+        "You + Me = The Best Thing Ever" 💕
+    </div>
+
+    <button class="back-btn" onclick="goBackToEnvelope()">
+    💌 Back to Envelope
+    </button>
+</div>
+
+<!-- Background audio (place the MP3 file in the same folder as this HTML) -->
+<audio id="bgAudio" src="Forever - Jurrivh.mp3" preload="auto" crossorigin="anonymous"></audio>
+
+<!-- manual control removed: audio starts/stops with envelope -->
+
+<!-- spectrum removed -->
+
+<script>
+function openLetter() {
+    const envelope = document.querySelector('.envelope');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    const letter = document.getElementById('letter');
+    // initialize audio on first user gesture
+    initBackgroundAudio();
+    // attempt immediate play on the user gesture to satisfy autoplay policies
+    try {
+        if (typeof _bgAudioElem !== 'undefined' && _bgAudioElem) {
+            _bgAudioElem.play().catch(()=>{});
+        } else {
+            const el = document.getElementById('bgAudio');
+            if (el) el.play().catch(()=>{});
+        }
+    } catch (e) {}
+    // start fade-in immediately so audio begins blending in on click
+    try { startBackgroundAudioFadeIn(4, 0.65); } catch (e) {}
+    // spectrum removed
+
+    envelope.classList.add('open');
+
+    setTimeout(() => {
+        // hide envelope screen and show letter, then animate entrance
+        envelopeContainer.style.display = 'none';
+        letter.style.display = 'block';
+        // allow layout to settle then add visible class to trigger transition
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            letter.classList.add('visible');
+        }));
+    }, 1000);
+}
+
+function goBackToEnvelope() {
+    const letter = document.getElementById('letter');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    const envelope = document.querySelector('.envelope');
+
+    // play exit transition
+    // fade audio out and play exit transition
+    try { fadeOutAndPauseBackground(2); } catch (e) {}
+    letter.classList.remove('visible');
+
+    // after transition completes, hide letter and show envelope again
+    const onTransitionEnd = function (e) {
+        if (e.propertyName !== 'opacity') return;
+        letter.style.display = 'none';
+        envelopeContainer.style.display = 'flex';
+        envelope.classList.remove('open');
+        letter.removeEventListener('transitionend', onTransitionEnd);
+    };
+
+    letter.addEventListener('transitionend', onTransitionEnd);
+}
+
+// --- Audio helpers: smooth fade-in & fade-out using Web Audio API ---
+let _bgAudioCtx = null, _bgAudioElem = null, _bgGain = null, _bgSource = null;
+function initBackgroundAudio() {
+    if (_bgAudioCtx) return;
+    _bgAudioElem = document.getElementById('bgAudio');
+    if (!_bgAudioElem) return;
+    try {
+        _bgAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        _bgSource = _bgAudioCtx.createMediaElementSource(_bgAudioElem);
+        _bgGain = _bgAudioCtx.createGain();
+        // start muted
+        _bgGain.gain.value = 0;
+        // connect source -> gain -> destination
+        _bgSource.connect(_bgGain).connect(_bgAudioCtx.destination);
+        _bgAudioElem.loop = true;
+    } catch (err) {
+        console.warn('Web Audio initialization failed', err);
+        _bgAudioCtx = null;
+    }
+}
+
+function startBackgroundAudioFadeIn(duration = 4, target = 0.65) {
+    if (!_bgAudioElem) _bgAudioElem = document.getElementById('bgAudio');
+    if (!_bgAudioElem) return;
+    if (_bgAudioCtx && _bgAudioCtx.state === 'suspended') {
+        _bgAudioCtx.resume();
+    }
+    // ensure playback starts from the beginning
+    try { _bgAudioElem.currentTime = 0; } catch (e) {}
+    // play the element and ramp gain
+    const now = (_bgAudioCtx && _bgAudioCtx.currentTime) || 0;
+    _bgAudioElem.play().catch(()=>{});
+    if (_bgGain && _bgAudioCtx) {
+        _bgGain.gain.cancelScheduledValues(now);
+        _bgGain.gain.setValueAtTime(0, now);
+        _bgGain.gain.linearRampToValueAtTime(target, now + duration);
+    } else {
+        // fallback: set volume on element
+        // start from beginning then set volume
+        try { _bgAudioElem.currentTime = 0; } catch (e) {}
+        _bgAudioElem.volume = target;
+    }
+}
+
+function fadeOutAndPauseBackground(duration = 2) {
+    if (!_bgAudioElem) _bgAudioElem = document.getElementById('bgAudio');
+    if (!_bgAudioElem) return;
+    if (_bgGain && _bgAudioCtx) {
+        const now = _bgAudioCtx.currentTime;
+        _bgGain.gain.cancelScheduledValues(now);
+        _bgGain.gain.setValueAtTime(_bgGain.gain.value, now);
+        _bgGain.gain.linearRampToValueAtTime(0, now + duration);
+        // pause after duration
+        setTimeout(() => {
+            try { _bgAudioElem.pause(); _bgAudioElem.currentTime = 0; } catch (e) {}
+        }, duration * 1000 + 50);
+    } else {
+        // fallback
+        // ramp element volume down if possible, then pause and reset
+        try {
+            const startVol = _bgAudioElem.volume || 1;
+            const steps = 20;
+            const stepTime = (duration*1000) / steps;
+            for (let i = 1; i <= steps; i++) {
+                setTimeout(((v) => () => { try { _bgAudioElem.volume = v; } catch (e) {} })(startVol * (1 - i/steps)), i * stepTime);
+            }
+        } catch (e) {}
+        setTimeout(() => { try { _bgAudioElem.pause(); _bgAudioElem.currentTime = 0; } catch (e) {} }, duration*1000 + 60);
+    }
+}
+
+// manual control removed; audio is controlled by envelope open/close
+
+// spectrum removed
+</script>
+</body>
+</html>
